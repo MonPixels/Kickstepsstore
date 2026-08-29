@@ -1,0 +1,47 @@
+<section class="concierge section">
+  <div class="concierge-inner reveal">
+    <p class="kicker">{{ section.settings.kicker }}</p>
+    <h2>{{ section.settings.heading }}</h2>
+    <p class="concierge-copy">{{ section.settings.copy }}</p>
+  </div>
+  <div class="concierge-mock reveal">
+    <div class="chat-window">
+      <div class="chat-head"><span class="chat-dot"></span> Kickstep Concierge</div>
+      <div class="chat-body">
+        {% for block in section.blocks %}
+          <div class="bubble {% if block.settings.from == 'ai' %}bubble-ai{% else %}bubble-user{% endif %}">{{ block.settings.text }}</div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "AI Concierge teaser",
+  "settings": [
+    { "type": "text", "id": "kicker", "label": "Kicker", "default": "Meet Your Concierge" },
+    { "type": "richtext", "id": "heading", "label": "Heading", "default": "<p>Ask. It answers. Instantly.</p>" },
+    { "type": "textarea", "id": "copy", "label": "Copy", "default": "Stock checks, order tracking, sizing help, and returns — handled by an AI trained on Kickstep, live 24/7. No hold music. No forms." }
+  ],
+  "blocks": [
+    {
+      "type": "message",
+      "name": "Chat bubble",
+      "settings": [
+        { "type": "select", "id": "from", "label": "From", "options": [{ "value": "user", "label": "Customer" }, { "value": "ai", "label": "AI" }], "default": "user" },
+        { "type": "text", "id": "text", "label": "Message" }
+      ]
+    }
+  ],
+  "default": {
+    "blocks": [
+      { "type": "message", "settings": { "from": "user", "text": "Is the Nightshade High in stock in size 10?" } },
+      { "type": "message", "settings": { "from": "ai", "text": "Yes — 3 left in size 10. Want me to hold one or send the link?" } },
+      { "type": "message", "settings": { "from": "user", "text": "I want to return my Concrete 88, too tight" } },
+      { "type": "message", "settings": { "from": "ai", "text": "Sorry to hear that! I can offer 15% off to keep them, or swap for a half size up — free exchange. Which works?" } }
+    ]
+  },
+  "presets": [{ "name": "AI Concierge teaser" }]
+}
+{% endschema %}

@@ -1,0 +1,48 @@
+<section class="hero">
+  <div class="hero-bg">
+    {% if section.settings.image %}
+      <img src="{{ section.settings.image | image_url: width: 1800 }}" alt="" width="1800" height="1200" loading="eager">
+    {% else %}
+      <img src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?q=80&w=1800&auto=format&fit=crop" alt="" width="1800" height="1200" loading="eager">
+    {% endif %}
+    <div class="hero-gradient"></div>
+  </div>
+
+  <div class="hero-content">
+    <p class="hero-eyebrow reveal">{{ section.settings.eyebrow }}</p>
+    <h1 class="hero-title">
+      <span class="reveal-line"><span>{{ section.settings.title_line_1 }}</span></span>
+      <span class="reveal-line"><span>{{ section.settings.title_line_2 }}</span></span>
+      <span class="reveal-line"><span class="outline-text">{{ section.settings.title_line_3 }}</span></span>
+    </h1>
+    <p class="hero-sub reveal">{{ section.settings.subtext }}</p>
+    <div class="hero-actions reveal">
+      <a href="{{ section.settings.primary_link }}" class="btn btn-primary">{{ section.settings.primary_label }}</a>
+      <a href="{{ section.settings.secondary_link }}" class="btn btn-ghost">{{ section.settings.secondary_label }}</a>
+    </div>
+  </div>
+
+  <div class="scroll-cue reveal">
+    <span>SCROLL</span>
+    <div class="scroll-line"><i></i></div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Background image" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "AERO FIELD COLLECTION — 002" },
+    { "type": "text", "id": "title_line_1", "label": "Title line 1", "default": "ENGINEERED" },
+    { "type": "text", "id": "title_line_2", "label": "Title line 2", "default": "FOR THE" },
+    { "type": "text", "id": "title_line_3", "label": "Title line 3 (outline)", "default": "STREET." },
+    { "type": "textarea", "id": "subtext", "label": "Subtext", "default": "Precision-built silhouettes. Featherweight foam. Designed in-house, tested on concrete." },
+    { "type": "text", "id": "primary_label", "label": "Primary button label", "default": "Shop the Drop" },
+    { "type": "url", "id": "primary_link", "label": "Primary button link" },
+    { "type": "text", "id": "secondary_label", "label": "Secondary button label", "default": "Watch the Film" },
+    { "type": "url", "id": "secondary_link", "label": "Secondary button link" }
+  ],
+  "presets": [{ "name": "Hero" }]
+}
+{% endschema %}

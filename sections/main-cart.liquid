@@ -1,0 +1,29 @@
+<section class="section cart-page">
+  <h1>Your Cart</h1>
+  {% if cart.item_count > 0 %}
+    <form action="{{ routes.cart_url }}" method="post">
+      <table class="cart-table">
+        <thead><tr><th>Product</th><th>Price</th><th>Qty</th><th>Total</th></tr></thead>
+        <tbody>
+          {% for item in cart.items %}
+            <tr>
+              <td>{{ item.product.title }} {% if item.variant.title != 'Default Title' %}({{ item.variant.title }}){% endif %}</td>
+              <td>{{ item.price | money }}</td>
+              <td><input type="number" name="updates[]" value="{{ item.quantity }}" min="0"></td>
+              <td>{{ item.line_price | money }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <p class="cart-total">Subtotal: {{ cart.total_price | money }}</p>
+      <button type="submit" name="checkout" class="btn btn-primary">Checkout</button>
+    </form>
+  {% else %}
+    <p>{{ 'general.cart.empty' | t }}</p>
+    <a href="{{ routes.all_products_collection_url }}" class="btn btn-ghost">Continue Shopping</a>
+  {% endif %}
+</section>
+
+{% schema %}
+{ "name": "Cart page", "settings": [] }
+{% endschema %}

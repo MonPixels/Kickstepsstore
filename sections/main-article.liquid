@@ -1,0 +1,8 @@
+<section class="section article-page">
+  <header class="section-head"><p class="kicker">{{ article.published_at | date: "%B %d, %Y" }}</p><h2>{{ article.title }}</h2></header>
+  <div class="rte">{{ article.content }}</div>
+</section>
+
+{% schema %}
+{ "name": "Article", "settings": [] }
+{% endschema %}

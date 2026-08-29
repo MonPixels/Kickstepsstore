@@ -1,0 +1,15 @@
+<section class="section blog-page">
+  <header class="section-head"><p class="kicker">Journal</p><h2>{{ blog.title }}</h2></header>
+  <div class="blog-grid">
+    {% for article in blog.articles %}
+      <a href="{{ article.url }}" class="collection-card reveal in-view">
+        {% if article.image %}<img src="{{ article.image | image_url: width: 900 }}" alt="{{ article.title | escape }}" width="900" height="600" loading="lazy">{% endif %}
+        <span class="collection-label">{{ article.title }}</span>
+      </a>
+    {% endfor %}
+  </div>
+</section>
+
+{% schema %}
+{ "name": "Blog", "settings": [] }
+{% endschema %}

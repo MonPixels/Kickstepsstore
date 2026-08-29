@@ -1,0 +1,15 @@
+<section class="section">
+  <header class="section-head"><p class="kicker">Shop</p><h2>All Collections</h2></header>
+  <div class="collection-grid">
+    {% for collection in collections %}
+      <a href="{{ collection.url }}" class="collection-card reveal in-view">
+        {% if collection.image %}<img src="{{ collection.image | image_url: width: 1200 }}" alt="{{ collection.title | escape }}" width="1200" height="800" loading="lazy">{% endif %}
+        <span class="collection-label">{{ collection.title }}</span>
+      </a>
+    {% endfor %}
+  </div>
+</section>
+
+{% schema %}
+{ "name": "All collections", "settings": [] }
+{% endschema %}

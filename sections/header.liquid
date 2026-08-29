@@ -1,0 +1,50 @@
+<header class="site-header" id="header">
+  <div class="header-inner">
+    <button class="menu-btn" aria-label="Menu"><span></span><span></span><span></span></button>
+    <a href="{{ routes.root_url }}" class="logo">{{ section.settings.logo_text_1 | default: "KICK" }}<span>{{ section.settings.logo_text_2 | default: "STEP" }}</span></a>
+    <nav class="main-nav">
+      {% for block in section.blocks %}
+        <a href="{{ block.settings.link }}">{{ block.settings.label }}</a>
+      {% endfor %}
+    </nav>
+    <div class="header-icons">
+      <button aria-label="Search" class="icon-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+      </button>
+      <a href="{{ routes.account_url }}" aria-label="Account" class="icon-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
+      </a>
+      <a href="{{ routes.cart_url }}" aria-label="Cart" class="icon-btn cart-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <span class="cart-count">{{ cart.item_count }}</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    { "type": "text", "id": "logo_text_1", "label": "Logo part 1", "default": "KICK" },
+    { "type": "text", "id": "logo_text_2", "label": "Logo part 2 (accent)", "default": "STEP" }
+  ],
+  "blocks": [
+    {
+      "type": "link",
+      "name": "Nav link",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Label", "default": "New Arrivals" },
+        { "type": "url", "id": "link", "label": "Link" }
+      ]
+    }
+  ],
+  "default": {
+    "blocks": [
+      { "type": "link", "settings": { "label": "New Arrivals", "link": "/collections/all" } },
+      { "type": "link", "settings": { "label": "Collections", "link": "/collections" } },
+      { "type": "link", "settings": { "label": "Our Story", "link": "/pages/our-story" } }
+    ]
+  }
+}
+{% endschema %}

@@ -1,0 +1,20 @@
+{
+  "sections": {
+    "hero": { "type": "hero" },
+    "marquee": { "type": "marquee" },
+    "product-grid": { "type": "product-grid" },
+    "statement": { "type": "statement" },
+    "concierge-teaser": { "type": "concierge-teaser" },
+    "collections-grid": { "type": "collections-grid" },
+    "newsletter": { "type": "newsletter" }
+  },
+  "order": [
+    "hero",
+    "marquee",
+    "product-grid",
+    "statement",
+    "concierge-teaser",
+    "collections-grid",
+    "newsletter"
+  ]
+}

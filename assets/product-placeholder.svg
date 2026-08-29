@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 750" role="img" aria-label="Kickstep sample product">
+  <rect width="600" height="750" fill="#191919"/>
+  <path d="M110 470c80-15 130-75 205-68 70 6 85 55 165 64 20 3 32 17 28 37l-12 61H113c-29 0-44-25-36-53l13-41c4-15 10-24 20-26Z" fill="#d4ff3f"/>
+  <path d="M150 450c58-20 93-77 156-78 53 0 86 38 132 68-56 21-224 27-288 10Z" fill="#f4f2ee" opacity=".92"/>
+  <path d="M120 555h375" stroke="#0a0a0a" stroke-width="15"/>
+  <text x="300" y="670" text-anchor="middle" fill="#f4f2ee" font-family="Arial,sans-serif" font-size="24" letter-spacing="8">KICKSTEP</text>
+</svg>

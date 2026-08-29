@@ -1,0 +1,21 @@
+<div class="announce">
+  <div class="announce-track">
+    {% for i in (1..2) %}
+      <span>{{ section.settings.message_1 }}</span><span>·</span>
+      <span>{{ section.settings.message_2 }}</span><span>·</span>
+      <span>{{ section.settings.message_3 }}</span><span>·</span>
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Announcement bar",
+  "settings": [
+    { "type": "text", "id": "message_1", "label": "Message 1", "default": "FREE SHIPPING OVER $150" },
+    { "type": "text", "id": "message_2", "label": "Message 2", "default": "NEW DROP — AERO FIELD 002" },
+    { "type": "text", "id": "message_3", "label": "Message 3", "default": "AI CONCIERGE — ASK ANYTHING, ANYTIME" }
+  ],
+  "presets": [{ "name": "Announcement bar" }]
+}
+{% endschema %}

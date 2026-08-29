@@ -1,0 +1,37 @@
+<section class="section">
+  <header class="section-head">
+    <p class="kicker">Collection</p>
+    <h2>{{ collection.title }}</h2>
+    {% if collection.description != blank %}<p class="section-sub">{{ collection.description }}</p>{% endif %}
+  </header>
+
+  {% paginate collection.products by 24 %}
+  <div class="product-grid">
+    {% for product in collection.products %}
+      {% assign img_a = product.featured_image %}
+      {% assign img_b = product.images[1] | default: img_a %}
+      <article class="product-card reveal in-view">
+        <a href="{{ product.url }}" class="product-media">
+          {% if img_a %}<img class="img-a" src="{{ img_a | image_url: width: 900 }}" alt="{{ product.title | escape }}" width="900" height="1125" loading="lazy">{% endif %}
+          {% if img_b %}<img class="img-b" src="{{ img_b | image_url: width: 900 }}" alt="{{ product.title | escape }}" width="900" height="1125" loading="lazy">{% endif %}
+          {% unless product.available %}<span class="badge badge-sold">{{ 'products.product.sold_out' | t }}</span>{% endunless %}
+        </a>
+        <div class="product-info">
+          <div><h3>{{ product.title }}</h3><p class="product-meta">{{ product.type }}</p></div>
+          <p class="price">{{ product.price | money }}</p>
+        </div>
+      </article>
+    {% else %}
+      <p>No products in this collection yet.</p>
+    {% endfor %}
+  </div>
+
+  {% if paginate.pages > 1 %}
+    <div class="pagination">{{ paginate | default_pagination }}</div>
+  {% endif %}
+  {% endpaginate %}
+</section>
+
+{% schema %}
+{ "name": "Collection page", "settings": [] }
+{% endschema %}

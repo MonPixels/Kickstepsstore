@@ -1,0 +1,26 @@
+<section class="newsletter section" id="story">
+  <div class="newsletter-inner reveal">
+    <h2>{{ section.settings.heading }}</h2>
+    <p>{{ section.settings.subtext }}</p>
+    {% form 'customer' %}
+      {{ form.errors | default: '' }}
+      <input type="hidden" name="contact[tags]" value="newsletter">
+      <div class="newsletter-form">
+        <input type="email" name="contact[email]" placeholder="your@email.com" required>
+        <button type="submit" class="btn btn-primary">Join</button>
+      </div>
+      {% if form.posted_successfully? %}<p class="form-success">You're on the list.</p>{% endif %}
+    {% endform %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Newsletter",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Be first to the next drop." },
+    { "type": "textarea", "id": "subtext", "label": "Subtext", "default": "Join the list. Get early access, birthday rewards, and the AI-curated deals digest." }
+  ],
+  "presets": [{ "name": "Newsletter" }]
+}
+{% endschema %}

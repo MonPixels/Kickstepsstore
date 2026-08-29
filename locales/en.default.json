@@ -1,0 +1,28 @@
+{
+  "general": {
+    "search": { "search": "Search", "close": "Close search" },
+    "cart": { "view": "View cart", "empty": "Your cart is empty" }
+  },
+  "products": {
+    "product": {
+      "sold_out": "Sold Out",
+      "low_stock": "Low Stock",
+      "add_to_cart": "Add to Cart",
+      "notify_me": "Notify Me",
+      "quick_add": "Quick Add +"
+    }
+  },
+  "sections": {
+    "header": {
+      "new_arrivals": "New Arrivals",
+      "collections": "Collections",
+      "our_story": "Our Story"
+    },
+    "footer": {
+      "shop": "Shop",
+      "support": "Support",
+      "company": "Company",
+      "rights": "All rights reserved."
+    }
+  }
+}
