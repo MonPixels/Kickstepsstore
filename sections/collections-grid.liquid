@@ -5,8 +5,10 @@
   </header>
   <div class="collection-grid">
     {% assign fallback_images = "https://images.unsplash.com/photo-1595341888016-a392ef81b7de?q=80&w=1200&auto=format&fit=crop|https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?q=80&w=1200&auto=format&fit=crop|https://images.unsplash.com/photo-1552346154-21d32810aba3?q=80&w=1200&auto=format&fit=crop" | split: "|" %}
+    {% assign fallback_handles = "street|trail|court" | split: "|" %}
     {% for block in section.blocks %}
-      {% assign coll = collections[block.settings.collection] %}
+      {% assign picked = collections[block.settings.collection] %}
+      {% assign coll = picked | default: collections[fallback_handles[forloop.index0]] %}
       <a href="{{ coll.url | default: '#' }}" class="collection-card reveal">
         {% if coll.image %}
           <img src="{{ coll.image | image_url: width: 1200 }}" alt="{{ coll.title | escape }}" width="1200" height="800" loading="lazy">
