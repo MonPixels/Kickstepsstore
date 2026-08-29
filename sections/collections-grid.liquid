@@ -4,6 +4,7 @@
     <h2 class="reveal">{{ section.settings.heading }}</h2>
   </header>
   <div class="collection-grid">
+    {% assign fallback_images = "https://images.unsplash.com/photo-1595341888016-a392ef81b7de?q=80&w=1200&auto=format&fit=crop|https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?q=80&w=1200&auto=format&fit=crop|https://images.unsplash.com/photo-1552346154-21d32810aba3?q=80&w=1200&auto=format&fit=crop" | split: "|" %}
     {% for block in section.blocks %}
       {% assign coll = collections[block.settings.collection] %}
       <a href="{{ coll.url | default: '#' }}" class="collection-card reveal">
@@ -11,6 +12,8 @@
           <img src="{{ coll.image | image_url: width: 1200 }}" alt="{{ coll.title | escape }}" width="1200" height="800" loading="lazy">
         {% elsif block.settings.image %}
           <img src="{{ block.settings.image | image_url: width: 1200 }}" alt="{{ block.settings.label }}" width="1200" height="800" loading="lazy">
+        {% else %}
+          <img src="{{ fallback_images[forloop.index0] | default: fallback_images[0] }}" alt="{{ block.settings.label }}" width="1200" height="800" loading="lazy">
         {% endif %}
         <span class="collection-label">{{ block.settings.label | default: coll.title }}</span>
       </a>

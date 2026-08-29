@@ -35,15 +35,31 @@
         </article>
       {% endfor %}
     {% else %}
-      {% comment %} Placeholder cards shown until real products are added / collection is selected {% endcomment %}
-      {% for i in (1..4) %}
+      {% comment %} Showcase cards shown until real Shopify products are connected. Real photos, real copy — no grey boxes. {% endcomment %}
+      {% assign showcase_names = "Aero Field Runner|Nightshade High|Concrete 88|Glacier Trail" | split: "|" %}
+      {% assign showcase_types = "Cloudfoam · Low-top|Reflective · High-top|All-terrain · Mid-top|Weatherproof · Trail" | split: "|" %}
+      {% assign showcase_prices = "185|220|210|240" | split: "|" %}
+      {% assign showcase_badges = "New|Low Stock|Bestseller|Sold Out" | split: "|" %}
+      {% assign showcase_images = "https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?q=80&w=900&auto=format&fit=crop|https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?q=80&w=900&auto=format&fit=crop|https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?q=80&w=900&auto=format&fit=crop|https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=900&auto=format&fit=crop" | split: "|" %}
+      {% for i in (0..3) %}
         <article class="product-card reveal">
           <div class="product-media">
-            <img class="img-a" src="{{ 'product-placeholder.svg' | asset_url }}" alt="Sample product" width="600" height="750" loading="lazy">
+            <img class="img-a" src="{{ showcase_images[i] }}" alt="{{ showcase_names[i] }}" width="900" height="1125" loading="lazy">
+            {% assign badge = showcase_badges[i] %}
+            {% if badge == "Sold Out" %}
+              <span class="badge badge-sold">{{ badge }}</span>
+            {% elsif badge == "Low Stock" %}
+              <span class="badge badge-low">{{ badge }}</span>
+            {% else %}
+              <span class="badge badge-new">{{ badge }}</span>
+            {% endif %}
+            <button class="quick-add" {% if badge == "Sold Out" %}disabled{% endif %}>
+              {% if badge == "Sold Out" %}{{ 'products.product.notify_me' | t }}{% else %}{{ 'products.product.quick_add' | t }}{% endif %}
+            </button>
           </div>
           <div class="product-info">
-            <div><h3>Sample Sneaker</h3><p class="product-meta">Select a collection ↑</p></div>
-            <p class="price">$—</p>
+            <div><h3>{{ showcase_names[i] }}</h3><p class="product-meta">{{ showcase_types[i] }}</p></div>
+            <p class="price">${{ showcase_prices[i] }}</p>
           </div>
         </article>
       {% endfor %}
