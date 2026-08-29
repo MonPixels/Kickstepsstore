@@ -6,6 +6,12 @@
 
   <div class="product-grid">
     {% assign coll = collections[section.settings.collection] %}
+    {% unless coll and coll.products.size > 0 %}
+      {% assign coll = collections['all'] %}
+    {% endunless %}
+    {% unless coll and coll.products.size > 0 %}
+      {% assign coll = collections.all %}
+    {% endunless %}
     {% if coll and coll.products.size > 0 %}
       {% for product in coll.products limit: section.settings.products_to_show %}
         {% assign img_a = product.featured_image %}
