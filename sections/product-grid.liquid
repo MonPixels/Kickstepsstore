@@ -27,9 +27,9 @@
             {% elsif product.tags contains 'new' %}
               <span class="badge badge-new">New</span>
             {% endif %}
-            <button class="quick-add" {% unless product.available %}disabled{% endunless %}>
-              {% if product.available %}{{ 'products.product.quick_add' | t }}{% else %}{{ 'products.product.notify_me' | t }}{% endif %}
-            </button>
+          </a>
+          <a href="{{ product.url }}" class="quick-add">
+            {% if product.available %}{{ 'products.product.quick_add' | t }}{% else %}{{ 'products.product.notify_me' | t }}{% endif %}
           </a>
           <div class="product-info">
             <div>
@@ -47,9 +47,10 @@
       {% assign showcase_prices = "185|220|210|240" | split: "|" %}
       {% assign showcase_badges = "New|Low Stock|Bestseller|Sold Out" | split: "|" %}
       {% assign showcase_images = "https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?q=80&w=900&auto=format&fit=crop|https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?q=80&w=900&auto=format&fit=crop|https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?q=80&w=900&auto=format&fit=crop|https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=900&auto=format&fit=crop" | split: "|" %}
+      {% assign showcase_handles = "aero-field-runner|nightshade-high|concrete-88|glacier-trail" | split: "|" %}
       {% for i in (0..3) %}
         <article class="product-card reveal">
-          <div class="product-media">
+          <a href="{{ routes.root_url }}products/{{ showcase_handles[i] }}" class="product-media">
             <img class="img-a" src="{{ showcase_images[i] }}" alt="{{ showcase_names[i] }}" width="900" height="1125" loading="lazy">
             {% assign badge = showcase_badges[i] %}
             {% if badge == "Sold Out" %}
@@ -59,10 +60,10 @@
             {% else %}
               <span class="badge badge-new">{{ badge }}</span>
             {% endif %}
-            <button class="quick-add" {% if badge == "Sold Out" %}disabled{% endif %}>
-              {% if badge == "Sold Out" %}{{ 'products.product.notify_me' | t }}{% else %}{{ 'products.product.quick_add' | t }}{% endif %}
-            </button>
-          </div>
+          </a>
+          <a href="{{ routes.root_url }}products/{{ showcase_handles[i] }}" class="quick-add">
+            {% if badge == "Sold Out" %}{{ 'products.product.notify_me' | t }}{% else %}{{ 'products.product.quick_add' | t }}{% endif %}
+          </a>
           <div class="product-info">
             <div><h3>{{ showcase_names[i] }}</h3><p class="product-meta">{{ showcase_types[i] }}</p></div>
             <p class="price">${{ showcase_prices[i] }}</p>
@@ -79,7 +80,7 @@
   "settings": [
     { "type": "text", "id": "kicker", "label": "Kicker", "default": "New Arrivals" },
     { "type": "text", "id": "heading", "label": "Heading", "default": "Fresh off the last." },
-    { "type": "collection", "id": "collection", "label": "Collection", "default": "all" },
+    { "type": "collection", "id": "collection", "label": "Collection" },
     { "type": "range", "id": "products_to_show", "label": "Products to show", "min": 2, "max": 12, "step": 1, "default": 4 }
   ],
   "presets": [{ "name": "Product grid" }]

@@ -27,6 +27,8 @@ revealEls.forEach((el) => io.observe(el));
 let lastScroll = 0;
 const header = document.getElementById('header');
 window.addEventListener('scroll', () => {
+  if (!header) return;
+
   const current = window.scrollY;
   if (current > 140 && current > lastScroll) {
     header.style.transform = 'translateY(-100%)';
